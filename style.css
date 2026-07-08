@@ -1,0 +1,336 @@
+/* ==========================================================================
+   1. VARIABLES & BASE STYLES (ตั้งค่าตัวแปรสีและโครงสร้างพื้นฐาน)
+   ========================================================================== */
+:root {
+    --bg-color: #0f172a;        /* สีพื้นหลังหลักของเว็บ (Slate Dark) */
+    --card-bg: #1e293b;         /* สีพื้นหลังกล่องข้อความ/การ์ด */
+    --card-sub-bg: #334155;     /* สีพื้นหลังย่อยภายในคาร์ด */
+    --primary: #3b82f6;         /* สีน้ำเงินหลักสำหรับเน้นข้อความ */
+    --success: #10b981;         /* สีเขียวสำหรับปุ่มเพิ่ม/วันที่ทำสำเร็จ/บอร์ดเดือน */
+    --success-dark: #064e3b;    /* สีเขียวเข้มสำหรับพื้นหลังบอร์ดสรุปรายเดือน */
+    --accent: #f59e0b;          /* สีเหลืองส้มสำหรับไฮไลต์แต้มรวม */
+    --danger: #ef4444;          /* สีแดงสำหรับปุ่มลบหรือสัญลักษณ์ยกเลิก */
+    --text: #f8fafc;            /* สีตัวอักษรหลัก (ขาวนวล) */
+    --text-muted: #94a3b8;      /* สีตัวอักษรจาง (เทา) */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* กล่องครอบคลุมเนื้อหาทั้งหมด */
+.container {
+    width: 100%;
+    max-width: 850px;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.text-center { 
+    text-align: center; 
+}
+
+/* ==========================================================================
+   2. USER SETUP SECTION (ส่วนพิมพ์ชื่อผู้ใช้งานด้านบน)
+   ========================================================================== */
+.user-setup-section {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background: var(--card-sub-bg);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.user-setup-section label {
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+/* กล่องรับข้อมูล Inputs ทั้งหมดในระบบ */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    background: var(--bg-color);
+    color: white;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus {
+    outline: 2px solid var(--primary);
+}
+
+/* ปุ่มกดมาตรฐาน (Buttons) */
+button {
+    padding: 12px 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    white-space: nowrap;
+}
+
+button:hover {
+    background: #2563eb;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   3. WORKSPACE HEADER & FORM (ส่วนแสดงหัวข้อสถานะเว็บ และฟอร์มเพิ่มกิจวัตร)
+   ========================================================================== */
+.header-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--card-sub-bg);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+/* แถบสีเหลืองแสดงคะแนนรวมมุมขวาบน */
+.total-points-badge {
+    background: var(--accent);
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+}
+
+.add-habit-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.add-habit-form input {
+    flex: 1;
+}
+
+/* ==========================================================================
+   4. HABIT CARDS & ACTIONS (กล่องรายการกิจวัตรแต่ละตัว)
+   ========================================================================== */
+.habit-card {
+    background: var(--card-sub-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.habit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.habit-info h3 {
+    margin: 0 0 5px 0;
+    color: var(--text);
+    font-size: 1.25rem;
+}
+
+.streak-info {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.streak-count {
+    color: #f43f5e; /* สีชมพูแดงเน้นจำนวนวันที่ทำต่อเนื่อง */
+    font-weight: bold;
+}
+
+.habit-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ป้ายบอกจำนวนแต้มที่จะได้รับครั้งต่อไป */
+.point-multiplier {
+    background: #475569;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* ปุ่มลบกิจวัตรสีแดง */
+.delete-habit-btn {
+    background: var(--danger);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.delete-habit-btn:hover {
+    background: #dc2626;
+}
+
+/* ==========================================================================
+   5. 30 DAYS GRID SYSTEM (ตารางบันทึก 30 วัน)
+   ========================================================================== */
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* เรียงแถวละ 10 บล็อกเดสก์ท็อป */
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+/* กล่องวันแต่ละช่อง (ว.1 - ว.30) */
+.day-box {
+    aspect-ratio: 1;
+    background: var(--card-bg);
+    border: 1px solid #475569;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.day-box:hover:not(.disabled):not(.completed) {
+    border-color: var(--primary);
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* สไตล์เมื่อวันนั้นบันทึกสำเร็จ (กดติ๊กถูก/ผ่านวินัย) */
+.day-box.completed {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+    cursor: default;
+}
+
+/* สไตล์เมื่อวันนั้นโดนล็อก (วันที่ผ่านไปแล้วลืมกด / หรือวันในอนาคต) */
+.day-box.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ตัวอักษรแสดงจำนวนแต้มย่อยใต้กล่องวัน (+5 Pts) */
+.day-box .pts {
+    font-size: 0.65rem;
+    opacity: 0.9;
+    margin-top: 2px;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   6. MONTHLY REPORT & SUMMARY (กระดานแดชบอร์ดสรุปผลรายเดือนด้านล่างสุด)
+   ========================================================================== */
+.report-section {
+    margin-top: 30px;
+}
+
+.summary-card {
+    padding: 25px;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.monthly-card {
+    background: var(--success-dark);
+    border: 1px solid #047857;
+}
+
+/* พื้นหลังกล่องรายการที่ถูกเจาะลึกออกมา */
+.report-list {
+    margin-top: 20px;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+/* บรรทัดแสดงรายละเอียดของแต่ละกิจวัตร */
+.report-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.report-item:last-child {
+    border-bottom: none;
+}
+
+/* ==========================================================================
+   7. RESPONSIVE MEDIA QUERIES (รองรับหน้าจอสมาร์ตโฟนและแท็บเล็ต)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header-status {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .total-points-badge {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 600px) {
+    /* บนหน้าจอมือถือเล็ก ปรับตารางวันให้เรียงแถวละ 5 ช่องแทนเพื่อป้องกันการบีบอัดตัวหนังสือ */
+    .days-grid { 
+        grid-template-columns: repeat(5, 1fr); 
+    }
+    
+    .user-setup-section, .add-habit-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .user-setup-section button, .add-habit-form button {
+        width: 100%;
+    }
+    
+    .habit-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .habit-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
